@@ -1,4 +1,4 @@
-import random
+from random import  choice
 
 alfabeto = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',
             'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
@@ -23,39 +23,100 @@ while True:
             break
     except:
         print('\33[31mApenas numeros, por favor!\33[m')
+while True:
+        letrasMinusculas = str(input('Deseja letras minusculas ? [S/N]: ').lower().strip())
+        letrasMaiusculas = str(input('Deseja letras maiusculas ? [S/N]: ').lower().strip())
+        numeros = str(input('Deseja numeros ? [S/N]: ').lower().strip())
+        simbolos = str(input('Deseja simbolos ? [S/N]: ').lower().strip())
 
-letrasMaiusculas = str(input('Deseja letras maiusculas ?: [S/N]').upper().strip())
-letrasMinusculas = str(input('Deseja letras minusculas ?: [S/N]').upper().strip())
-numeros = str(input('Deseja numeros ?: [S/N]').upper().strip())
-simbolos = str(input('Deseja simbolos ?: [S/N]').upper().strip())
+        alfabetoTemp = list()
 
-if letrasMinusculas == 'S' and letrasMaiusculas == 'S' and numeros == 'S' and simbolos == 'S':
-    for l in range(0, qtdCaracteres):
-        senha.append(random.choice(alfabeto))
+        senha = list()
 
-elif letrasMinusculas == 'N':
-    for l in alfabeto:
-        if l == l.upper():
-            alfabetoTemp.append(l)
-    for l in range(0, qtdCaracteres):
-        senha.append(random.choice(alfabetoTemp))
+        if letrasMinusculas == 's' and letrasMaiusculas == 's' and numeros == 's' and simbolos == 's':
+            for s in range(0, qtdCaracteres):
+                senha.append(choice(alfabeto))
 
-elif letrasMaiusculas == 'N':
-    for l in alfabeto:
-        if l == l.lower():
-            alfabetoTemp.append(l)
-    for l in range(0, qtdCaracteres):
-        senha.append(random.choice(alfabetoTemp))
+        if letrasMinusculas and letrasMaiusculas and numeros and simbolos not in "SsNn" :
+            print('\33[31mColoque apenas as opcoes solicitadas!\33[m')
+            continue
 
-elif numeros == 'N':
-    alfabetoTemp = ''.join(l for l in alfabeto if not l.isdigit())
-    for l in range(0, qtdCaracteres):
-        senha.append(random.choice(alfabetoTemp))
+        elif letrasMinusculas == 's' and letrasMaiusculas == 's' and numeros == 'n' and simbolos == 'n':
+            for char in alfabeto:
+                if not char.isdigit() and char.isalnum() == True:
+                    alfabetoTemp.append(char)
+            for s in range(0, qtdCaracteres):
+                senha.append(choice(alfabetoTemp))
 
-elif simbolos == 'N':
-    alfabetoTemp = ''.join(l for l in alfabeto if l.isalnum())
-    for l in range(0, qtdCaracteres):
-        senha.append(random.choice(alfabetoTemp))
-print('Sua nova senha é: ',end='')
-for item in senha:
-    print(f'{item}',end='')
+        elif letrasMinusculas == 'n' and letrasMaiusculas == 's' and numeros == 's' and simbolos == 'n':
+            for char in alfabeto:
+                if char == char.upper() and char.isalnum() == True:
+                    alfabetoTemp.append(char)
+            for s in range(0, qtdCaracteres):
+                senha.append(choice(alfabetoTemp))
+
+
+        elif letrasMinusculas == 'n' and letrasMaiusculas == 's' and numeros == 'n' and simbolos == 's':
+            for char in alfabeto:
+                if char == char.upper() and not char.isdigit():
+                    alfabetoTemp.append(char)
+            for s in range(0, qtdCaracteres):
+                senha.append(choice(alfabetoTemp))
+
+
+        elif letrasMinusculas == 's' and letrasMaiusculas == 'n' and numeros == 's' and simbolos == 'n':
+            for char in alfabeto:
+                if char == char.lower() and char.isalnum() == True:
+                    alfabetoTemp.append(char)
+            for s in range(0, qtdCaracteres):
+                senha.append(choice(alfabetoTemp))
+
+
+        elif letrasMinusculas == 's' and letrasMaiusculas == 'n' and numeros == 'n' and simbolos == 's':
+            for char in alfabeto:
+                if char == char.lower() and not char.isdigit():
+                    alfabetoTemp.append(char)
+            for s in range(0, qtdCaracteres):
+                senha.append(choice(alfabetoTemp))
+
+
+        elif letrasMinusculas == 'n' and letrasMaiusculas == 'n' and numeros == 's' and simbolos == 's':
+            for char in alfabeto:
+                if char == char.lower() and char == char.upper():
+                    alfabetoTemp.append(char)
+            for s in range(0, qtdCaracteres):
+                senha.append(choice(alfabetoTemp))
+
+
+        elif letrasMinusculas == 'n':
+            for char in alfabeto:
+                if char == char.upper():
+                    alfabetoTemp.append(char)
+            for s in range(0, qtdCaracteres):
+                senha.append(choice(alfabetoTemp))
+
+        elif letrasMaiusculas == 'n':
+            for char in alfabeto:
+                if char == char.lower():
+                    alfabetoTemp.append(char)
+            for s in range(0, qtdCaracteres):
+                senha.append(choice(alfabetoTemp))
+
+        elif numeros == 'n':
+            for char in alfabeto:
+                if not char.isdigit() == True:
+                    alfabetoTemp.append(char)
+            for s in range(0, qtdCaracteres):
+                senha.append(choice(alfabetoTemp))
+
+        elif simbolos == 'n':
+            for char in alfabeto:
+                if char.isalnum() == True:
+                    alfabetoTemp.append(char)
+            for s in range(0, qtdCaracteres):
+                senha.append(choice(alfabetoTemp))
+
+        print('\n\33[32mSua nova senha é:\33[m ',end='')
+        for item in senha:
+            print(f'\33[33m{item}',end='')
+        break
